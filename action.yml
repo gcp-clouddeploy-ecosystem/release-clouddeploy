@@ -1,0 +1,114 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Create Release to Cloud Deploy
+author: gcp-cloud-deploy-ecosystem
+description: |-
+  Use this action to create a release to Google Cloud Platform Cloud Deploy
+
+inputs:
+  release:
+    description: |-
+      Name of the release, it needs to be unique in the pipeline.
+    required: false
+
+  delivery_pipeline:
+    description: |-
+      Name of the DeliveryPipeline resource. 
+    required: true
+
+  region:
+    description: |-
+      Region in which the resource can be found.
+    required: false
+    default: us-central1
+
+  annotations:
+    description: |-
+      Comma separated annotations to add to the release.
+    required: false
+
+  labels:
+    description: |-
+      Comma separated labels to add to the release.
+    required: false
+
+  description:
+    description: |-
+      Description to add to the release
+    required: false
+
+  gcs_source_staging_dir:
+    description: |-
+      Location of the Cloud Storage bucket to copy the source used for staging the build. If not set, the default bucket gs://[PROJECT_ID]_clouddeploy/source will be used.
+    required: false
+
+  ignore_file:
+    description: |-
+      File(s) to ignore on source upload.
+    required: false
+
+  to_target:
+    description: |-
+      Rollout target
+    required: false
+
+  build_artifacts:
+    description: |-
+      Reference to a Skaffold build artifacts output file
+    required: false
+
+  source:
+    description: |-
+      Location to the source that contains skaffold.yaml.
+    required: false
+
+  images:
+    description: |-
+      Reference to a collection of individual image name to image full path replacements.
+    required: false
+
+  project_id:
+    description: The GCP project ID. Overrides project ID set by credentials.
+    required: false
+
+  credentials:
+    description: |-
+      Service account key to use for authentication. This should be the JSON
+      formatted private key which can be exported from the Cloud Console. The
+      value can be raw or base64-encoded. Required if not using a the
+      setup-gcloud action with exported credentials.
+    required: false
+
+  flags:
+    description: |-
+      Space separated list of other Cloud Run flags, examples can be found:
+      https://cloud.google.com/sdk/gcloud/reference/run/deploy#FLAGS. Ex 
+      --service-account=my-account@project.iam.gserviceaccount.com --concurrency=10
+    required: false
+
+  gcloud_version:
+    description: |-
+      Version of the Cloud SDK to install. If unspecified or set to "latest",
+      the latest available gcloud SDK version for the target platform will be
+      installed. Example: "290.0.1".
+    required: false
+
+runs:
+  using: node12
+  main: dist/index.js
+
+branding:
+  icon: 'send'
+  color: 'blue'
