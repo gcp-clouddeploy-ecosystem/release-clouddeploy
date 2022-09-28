@@ -21,11 +21,11 @@ inputs:
   release:
     description: |-
       Name of the release, it needs to be unique in the pipeline.
-    required: false
+    required: true
 
-  delivery_pipeline:
+  delivery-pipeline:
     description: |-
-      Name of the DeliveryPipeline resource. 
+      Name of the DeliveryPipeline resource.
     required: true
 
   region:
@@ -49,22 +49,22 @@ inputs:
       Description to add to the release
     required: false
 
-  gcs_source_staging_dir:
+  gcs-source-staging-dir:
     description: |-
       Location of the Cloud Storage bucket to copy the source used for staging the build. If not set, the default bucket gs://[PROJECT_ID]_clouddeploy/source will be used.
     required: false
 
-  ignore_file:
+  ignore-file:
     description: |-
       File(s) to ignore on source upload.
     required: false
 
-  to_target:
+  to-target:
     description: |-
       Rollout target
     required: false
 
-  build_artifacts:
+  build-artifacts:
     description: |-
       Reference to a Skaffold build artifacts output file
     required: false
@@ -79,7 +79,7 @@ inputs:
       Reference to a collection of individual image name to image full path replacements.
     required: false
 
-  project_id:
+  project-id:
     description: The GCP project ID. Overrides project ID set by credentials.
     required: false
 
@@ -98,7 +98,7 @@ inputs:
       --service-account=my-account@project.iam.gserviceaccount.com --concurrency=10
     required: false
 
-  gcloud_version:
+  gcloud-version:
     description: |-
       Version of the Cloud SDK to install. If unspecified or set to "latest",
       the latest available gcloud SDK version for the target platform will be
@@ -106,9 +106,9 @@ inputs:
     required: false
 
 runs:
-  using: node12
+  using: node16
   main: dist/index.js
 
 branding:
-  icon: 'send'
-  color: 'blue'
+  icon: "send"
+  color: "blue"

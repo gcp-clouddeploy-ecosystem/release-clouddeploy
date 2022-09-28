@@ -33,7 +33,7 @@ Cloud Deploy. See the [Credentials](#credentials) below for more information.
 
 ```yaml
 - name: Create release to Cloud Deploy
-  uses: gcp-cloud-deploy-ecosystem/release-cloudresourcemanager@main
+  uses: gcp-cloud-deploy-ecosystem/release-clouddeploy@main
 ```
 
 ## Inputs
@@ -41,26 +41,26 @@ Cloud Deploy. See the [Credentials](#credentials) below for more information.
 | Name          | Requirement | Default | Description |
 | ------------- | ----------- | ------- | ----------- |
 | `release` | required | | Name of the release, it needs to be unique in the pipeline. |
-| `delivery_pipeline` | required | | Name of the `DeliveryPipeline` resource. |
+| `delivery-pipeline` | required | | Name of the `DeliveryPipeline` resource. |
 | `region`| _optional_ | `us-central1` | Region in which the resource can be found. |
 | `annotations` | _optional_ | | Comma separated annotations to add to the release. |
 | `labels` | _optional_ | | Comma separated labels to add to the release. |
 | `description` | _optional_ | | Description to add to the release |
-| `gcs_source_staging_dir` | _optional_ |  | Location of the Cloud Storage bucket to copy the source used for staging the build. If not set, the default bucket `gs://[PROJECT_ID]_clouddeploy/source` will be used. |
-| `ignore_file` | _optional_ | | File(s) to ignore on source upload. |
-| `to_target` | _optional_ | | Rollout target. |
+| `gcs-source-staging-dir` | _optional_ |  | Location of the Cloud Storage bucket to copy the source used for staging the build. If not set, the default bucket `gs://[PROJECT_ID]_clouddeploy/source` will be used. |
+| `ignore-file` | _optional_ | | File(s) to ignore on source upload. |
+| `to-target` | _optional_ | | Rollout target. |
 | `build_artifacts` | _optional_ | | Reference to a Skaffold build artifacts output file. |
 | `source` | _optional_ | `.` | Location to the source that contains `skaffold.yaml`. |
 | `images` | _optional_ | | Reference to a collection of individual image name to image full path replacements. |
 | `credentials`| Required if not using a the `setup-gcloud` action with exported credentials. | | Service account key to use for authentication. This should be the JSON formatted private key which can be exported from the Cloud Console. The value can be raw or base64-encoded.  |
-| `project_id`| _optional_ | | ID of the Google Cloud project. If provided, this will override the project configured by `setup-gcloud`. |
+| `project-id`| _optional_ | | ID of the Google Cloud project. If provided, this will override the project configured by `setup-gcloud`. |
 | `file` | _optional_ | `clouddeploy.yaml` | Path to the Cloud Deploy configuration file. |
 | `flags` | _optional_ | | Space separated list of other Cloud Deploy flags. |
-| `gcloud_version` | _optional_ | `latest` | Pin the version of Cloud SDK `gcloud` CLI. |
+| `gcloud-version` | _optional_ | `latest` | Pin the version of Cloud SDK `gcloud` CLI. |
 
 ## Outputs
 
-- `operation_id`: ID of the operation.
+- `operation-id`: ID of the operation.
 - `release`: Name of the release.
 
 ## Credentials

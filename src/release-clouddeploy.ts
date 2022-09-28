@@ -33,19 +33,21 @@ export async function run(): Promise<void> {
     // Get inputs
     // Core inputs
     const credentials = core.getInput('credentials'); // Service account key
-    let projectId = core.getInput('project_id');
-    let gcloudVersion = core.getInput('gcloud_version');
+    let projectId = core.getInput('project-id');
+    let gcloudVersion = core.getInput('gcloud-version');
     // Flags
-    const release = core.getInput('release');
-    const deliveryPipeline = core.getInput('delivery_pipeline');
+    const release = core.getInput('release', { required: true });
+    const deliveryPipeline = core.getInput('delivery-pipeline', {
+      required: true,
+    });
     const region = core.getInput('region') || 'us-central1';
     const annotations = core.getInput('annotations');
     const labels = core.getInput('labels');
     const description = core.getInput('description');
-    const gcsSourceStagingDir = core.getInput('gcs_source_staging_dir');
-    const ignoreFile = core.getInput('ignore_file');
-    const toTarget = core.getInput('to_target');
-    const buildArtifacts = core.getInput('build_artifacts');
+    const gcsSourceStagingDir = core.getInput('gcs-source-staging-dir');
+    const ignoreFile = core.getInput('ignore-file');
+    const toTarget = core.getInput('to-target');
+    const buildArtifacts = core.getInput('build-artifacts');
     const source = core.getInput('source');
     const images = core.getInput('images');
     const flags = core.getInput('flags');
@@ -195,7 +197,7 @@ export function setUrlOutput(output: string): string | undefined {
   }
   // Match operation ID
   const operationId = urlMatch!.length > 1 ? urlMatch![1] : urlMatch![0];
-  core.setOutput('operation_id', operationId);
+  core.setOutput('operation-id', operationId);
   return operationId;
 }
 
