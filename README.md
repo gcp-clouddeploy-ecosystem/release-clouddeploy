@@ -33,7 +33,7 @@ Cloud Deploy. See the [Credentials](#credentials) below for more information.
 
 ```yaml
 - name: Create release to Cloud Deploy
-  uses: gcp-cloud-deploy-ecosystem/release-clouddeploy@main
+  uses: gcp-clouddeploy-ecosystem/release-clouddeploy@main
 ```
 
 ## Inputs
@@ -88,10 +88,10 @@ You can provide credentials using the [setup-gcloud][setup-gcloud] action:
     export_default_credentials: true
 
 - name: Create release to Cloud Deploy
-  uses: gcp-cloud-deploy-ecosystem/release-clouddeploy@main
+  uses: gcp-clouddeploy-ecosystem/release-clouddeploy@main
   with:
     release: release-01
-    delivery_pipeline: my-pipeline
+    delivery-pipeline: my-pipeline
 ```
 
 ### Via Credentials
@@ -103,10 +103,10 @@ action:
 
 ```yaml
 - name: Create release to Cloud Deploy
-  uses: gcp-cloud-deploy-ecosystem/release-clouddeploy@main
+  uses: gcp-clouddeploy-ecosystem/release-clouddeploy@main
   with:
     release: release-01
-    delivery_pipeline: my-pipeline
+    delivery-pipeline: my-pipeline
 ```
 
 ### Via Application Default Credentials
@@ -118,10 +118,10 @@ only works using a custom runner hosted on GCP.**
 
 ```yaml
 - name: Create release to Cloud Deploy
-  uses: gcp-cloud-deploy-ecosystem/release-clouddeploy@main
+  uses: gcp-clouddeploy-ecosystem/release-clouddeploy@main
   with:
     release: release-01
-    delivery_pipeline: my-pipeline
+    delivery-pipeline: my-pipeline
 ```
 
 ### Setup
@@ -168,10 +168,10 @@ Migrated to `deploy-clouddeploy`:
 
 ```YAML
 - name: Create release to Cloud Deploy
-  uses: gcp-cloud-deploy-ecosystem/release-clouddeploy@v0.2.0
+  uses: gcp-clouddeploy-ecosystem/release-clouddeploy@v0.2.0
   with:
     release: release-01
-    delivery_pipeline: my-pipeline
+    delivery-pipeline: my-pipeline
 ```
 
 ## Contributing
@@ -180,7 +180,7 @@ See [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Acknowledgment
 
-This action was initially forked [gcp-cloud-deploy-ecosystem/deploy-clouddeploy](https://github.com/gcp-cloud-deploy-ecosystem/deploy-clouddeploy).
+This action was initially forked [gcp-clouddeploy-ecosystem/deploy-clouddeploy](https://github.com/gcp-clouddeploy-ecosystem/deploy-clouddeploy).
 
 ## License
 
