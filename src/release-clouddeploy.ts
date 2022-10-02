@@ -42,6 +42,7 @@ export async function run(): Promise<void> {
     });
     const region = core.getInput('region') || 'us-central1';
     const annotations = core.getInput('annotations');
+    const beta = core.getInput('beta') === 'true';
     const labels = core.getInput('labels');
     const description = core.getInput('description');
     const gcsSourceStagingDir = core.getInput('gcs-source-staging-dir');
@@ -52,9 +53,6 @@ export async function run(): Promise<void> {
     const images = core.getInput('images');
     const flags = core.getInput('flags');
 
-    // Flag for installing gcloud beta components
-    // Currently, the deploy command is only supported in the beta command
-    const installBeta = true;
     let cmd;
 
     cmd = [
@@ -144,8 +142,8 @@ export async function run(): Promise<void> {
         'No project Id provided. Ensure you have set either the project_id or credentials fields.',
       );
 
-    // Install beta components if needed and prepend the beta command
-    if (installBeta) {
+    // install beta components if needed and prepend the beta command
+    if (beta) {
       await setupGcloud.installComponent('beta');
       cmd.unshift('beta');
     }

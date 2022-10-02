@@ -39,6 +39,12 @@ inputs:
       Comma separated annotations to add to the release.
     required: false
 
+  beta:
+    description: |-
+      Use `gcloud beta` command
+    required: false
+    default: "false"
+
   labels:
     description: |-
       Comma separated labels to add to the release.

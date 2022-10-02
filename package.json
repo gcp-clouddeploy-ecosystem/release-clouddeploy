@@ -1,6 +1,6 @@
 {
   "name": "release-clouddeploy",
-  "version": "0.6.0",
+  "version": "1.0.4",
   "description": "Github Action: Create a release to Google Cloud Deploy",
   "main": "dist/index.js",
   "scripts": {

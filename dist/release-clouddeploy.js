@@ -16,7 +16,11 @@
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -53,7 +57,7 @@ const toolCache = __importStar(require("@actions/tool-cache"));
 const setupGcloud = __importStar(require("./setup-google-cloud-sdk/src"));
 const path_1 = __importDefault(require("path"));
 exports.GCLOUD_METRICS_ENV_VAR = 'CLOUDSDK_METRICS_ENVIRONMENT';
-exports.GCLOUD_METRICS_LABEL = 'github-actions-deploy-cloudrun';
+exports.GCLOUD_METRICS_LABEL = 'github-actions-release-clouddeploy';
 /**
  * Executes the main action. It includes the main business logic and is the
  * primary entry point. It is documented inline.
@@ -65,29 +69,29 @@ function run() {
             // Get inputs
             // Core inputs
             const credentials = core.getInput('credentials'); // Service account key
-            let projectId = core.getInput('project_id');
-            let gcloudVersion = core.getInput('gcloud_version');
+            let projectId = core.getInput('project-id');
+            let gcloudVersion = core.getInput('gcloud-version');
             // Flags
-            const release = core.getInput('release');
-            const deliveryPipeline = core.getInput('delivery_pipeline');
+            const release = core.getInput('release', { required: true });
+            const deliveryPipeline = core.getInput('delivery-pipeline', {
+                required: true,
+            });
             const region = core.getInput('region') || 'us-central1';
             const annotations = core.getInput('annotations');
+            const beta = core.getInput('beta') === 'true';
             const labels = core.getInput('labels');
             const description = core.getInput('description');
-            const gcsSourceStagingDir = core.getInput('gcs_source_staging_dir');
-            const ignoreFile = core.getInput('ignore_file');
-            const toTarget = core.getInput('to_target');
-            const buildArtifacts = core.getInput('build_artifacts');
+            const gcsSourceStagingDir = core.getInput('gcs-source-staging-dir');
+            const ignoreFile = core.getInput('ignore-file');
+            const toTarget = core.getInput('to-target');
+            const buildArtifacts = core.getInput('build-artifacts');
             const source = core.getInput('source');
             const images = core.getInput('images');
             const flags = core.getInput('flags');
-            // Flag for installing gcloud beta components
-            // Currently, the deploy command is only supported in the beta command
-            const installBeta = true;
             let cmd;
             cmd = [
                 'deploy',
-                'release',
+                'releases',
                 'create',
                 release,
                 '--quiet',
@@ -161,8 +165,8 @@ function run() {
             const projectIdSet = yield setupGcloud.isProjectIdSet();
             if (!projectIdSet)
                 throw new Error('No project Id provided. Ensure you have set either the project_id or credentials fields.');
-            // Install beta components if needed and prepend the beta command
-            if (installBeta) {
+            // install beta components if needed and prepend the beta command
+            if (beta) {
                 yield setupGcloud.installComponent('beta');
                 cmd.unshift('beta');
             }
@@ -215,7 +219,7 @@ function setUrlOutput(output) {
     }
     // Match operation ID
     const operationId = urlMatch.length > 1 ? urlMatch[1] : urlMatch[0];
-    core.setOutput('operation_id', operationId);
+    core.setOutput('operation-id', operationId);
     return operationId;
 }
 exports.setUrlOutput = setUrlOutput;

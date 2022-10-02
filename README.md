@@ -44,6 +44,7 @@ Cloud Deploy. See the [Credentials](#credentials) below for more information.
 | `delivery-pipeline` | required | | Name of the `DeliveryPipeline` resource. |
 | `region`| _optional_ | `us-central1` | Region in which the resource can be found. |
 | `annotations` | _optional_ | | Comma separated annotations to add to the release. |
+| `beta` | _optional_ | `false` | Use `gcloud beta` command. |
 | `labels` | _optional_ | | Comma separated labels to add to the release. |
 | `description` | _optional_ | | Description to add to the release |
 | `gcs-source-staging-dir` | _optional_ |  | Location of the Cloud Storage bucket to copy the source used for staging the build. If not set, the default bucket `gs://[PROJECT_ID]_clouddeploy/source` will be used. |
