@@ -21,7 +21,7 @@ import * as setupGcloud from './setup-google-cloud-sdk/src';
 import path from 'path';
 
 export const GCLOUD_METRICS_ENV_VAR = 'CLOUDSDK_METRICS_ENVIRONMENT';
-export const GCLOUD_METRICS_LABEL = 'github-actions-deploy-cloudrun';
+export const GCLOUD_METRICS_LABEL = 'github-actions-release-clouddeploy';
 
 /**
  * Executes the main action. It includes the main business logic and is the
@@ -59,7 +59,7 @@ export async function run(): Promise<void> {
 
     cmd = [
       'deploy',
-      'release',
+      'releases',
       'create',
       release,
       '--quiet',
