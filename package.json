@@ -52,7 +52,7 @@
     "@types/js-yaml": "^4.0.5",
     "@types/lodash": "^4.14.185",
     "@types/mocha": "^10.0.0",
-    "@types/node": "^18.7.23",
+    "@types/node": "^18.11.19",
     "@types/sinon": "^10.0.13",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
